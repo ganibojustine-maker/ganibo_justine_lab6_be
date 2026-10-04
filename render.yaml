@@ -1,0 +1,37 @@
+# Render Blueprint - New > Blueprint (or create a Docker Web Service manually)
+services:
+  - type: web
+    name: product-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DB_DRIVER
+        value: mysql
+      - key: DB_CHARSET
+        value: utf8mb4
+      - key: DB_SSL
+        value: "true"
+      - key: MIGRATION_ENABLED
+        value: "false"
+      - key: ALLOW_WEB_MIGRATION
+        value: "false"
+      # Secrets - fill these in the Render dashboard (sync: false = not stored in git)
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: REFRESH_TOKEN_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
